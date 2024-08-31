@@ -1,3 +1,3 @@
 cd `dirname $0`
-node ../login_aws.js SAMPLE
+node ../aws/login_aws.js SAMPLE &
 exit
