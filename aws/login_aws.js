@@ -1,11 +1,14 @@
 const { chromium } = require('playwright');
+const { generateOtp } = require('../helpers/generate_otp.js');
 const dotenv = require('dotenv');
 dotenv.config();
 
 const args = process.argv.slice(2);
-const account = process.env[`AWS_${args[0]}_ACCOUNT`];
-const username = process.env[`AWS_${args[0]}_USERNAME`];
-const password = process.env[`AWS_${args[0]}_PASSWORD`];
+const accountAlias = args[0];
+const account = process.env[`AWS_${accountAlias}_ACCOUNT`];
+const username = process.env[`AWS_${accountAlias}_USERNAME`];
+const password = process.env[`AWS_${accountAlias}_PASSWORD`];
+const secret = process.env[`AWS_${accountAlias}_SECRET`];
 const timeoutSec = 15000;
 
 (async () => {
@@ -26,6 +29,11 @@ const timeoutSec = 15000;
   // サインインボタンが表示されるまで待機
   await page.waitForSelector('#signin_button', { timeout: timeoutSec });
   await page.click('#signin_button');
+
+  await page.waitForSelector('#mfaCode', { timeout: timeoutSec });
+  const { token } = generateOtp(secret);
+  await page.fill('#mfaCode', token);
+  await page.click('button[type="submit"]');
 
   await page.setViewportSize({ width: 1920, height: 1080 });
 })();
