@@ -34,6 +34,4 @@ const timeoutSec = 15000;
   const { token } = generateOtp(secret);
   await page.fill('#mfaCode', token);
   await page.click('button[type="submit"]');
-
-  await page.setViewportSize({ width: 1920, height: 1080 });
 })();
