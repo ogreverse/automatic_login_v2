@@ -3,6 +3,8 @@
 [automatic_login](https://github.com/ogreverse/automatic_login) の後継版。
 Selenium から PlayWright を使うように変更しました。
 
+[zennの記事](https://zenn.dev/ogreverse/articles/73697932efd128)
+
 ## 用途
 
 複数アカウントへ同時ログインしたいサービス(例えばawsやgithub)に簡単にログインするスクリプト。
