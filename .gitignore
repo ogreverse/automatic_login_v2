@@ -1,1 +1,4 @@
 node_modules
+
+mac_commands
+!mac_commands/login_sample.command
