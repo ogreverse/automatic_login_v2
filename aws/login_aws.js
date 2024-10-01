@@ -18,6 +18,9 @@ const timeoutSec = 15000;
 
   await page.goto(`https://${account}.signin.aws.amazon.com/console`);
 
+  // 待機
+  await page.waitForTimeout(3000);
+
   // ユーザー名フィールドが表示されるまで待機
   await page.waitForSelector('#username', { timeout: timeoutSec });
   await page.fill('#username', username);
