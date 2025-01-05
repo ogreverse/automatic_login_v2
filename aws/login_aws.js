@@ -13,7 +13,7 @@ const timeoutSec = 15000;
 
 (async () => {
   const browser = await chromium.launch({ headless: false });
-  const context = await browser.newContext();
+  const context = await browser.newContext({ viewport: null });
   const page = await context.newPage();
 
   await page.goto(`https://${account}.signin.aws.amazon.com/console`);
