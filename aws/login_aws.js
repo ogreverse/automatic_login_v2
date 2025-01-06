@@ -12,7 +12,12 @@ const secret = process.env[`AWS_${accountAlias}_SECRET`];
 const timeoutSec = 15000;
 
 (async () => {
-  const browser = await chromium.launch({ headless: false });
+  const browser = await chromium.launch({
+    headless: false,
+    args: [
+      '--single-process', // memo: ブラウザ終了時にプロセスを残さない
+    ],
+  });
   const context = await browser.newContext({ viewport: null });
   const page = await context.newPage();
 
