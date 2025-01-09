@@ -1,4 +1,4 @@
-const { chromium } = require('playwright');
+const { webkit } = require('playwright');
 const { generateOtp } = require('../helpers/generate_otp.js');
 const dotenv = require('dotenv');
 dotenv.config();
@@ -12,7 +12,8 @@ const secret = process.env[`AWS_${accountAlias}_SECRET`];
 const timeoutSec = 15000;
 
 (async () => {
-  const browser = await chromium.launch({
+  // memo: chromium を使うと特定のページにアクセスした際にクラッシュするため、webkit を使用
+  const browser = await webkit.launch({
     headless: false,
     args: [
       '--single-process', // memo: ブラウザ終了時にプロセスを残さない
