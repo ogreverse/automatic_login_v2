@@ -15,9 +15,6 @@ const timeoutSec = 15000;
   // memo: chromium を使うと特定のページにアクセスした際にクラッシュするため、webkit を使用
   const browser = await webkit.launch({
     headless: false,
-    args: [
-      '--single-process', // memo: ブラウザ終了時にプロセスを残さない
-    ],
   });
   const context = await browser.newContext({ viewport: null });
   const page = await context.newPage();
