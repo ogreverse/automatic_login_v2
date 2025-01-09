@@ -80,4 +80,4 @@ export AWS_FOO_SECRET="XXXXXXXXXXXXXXXXXXXX"
 
 ### 実行
 
-login_foo.command を実行。(もしくは spotlight で "login_foo.command" を実行)
+`$ npm run exec -- FOO`

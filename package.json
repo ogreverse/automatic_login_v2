@@ -7,6 +7,7 @@
     "scripts": {
       "aws": "node aws/login_aws.js",
       "otp": "node npm_commands/otp.js",
-      "otp:watch": "watch -n 1 node npm_commands/otp.js"
+      "otp:watch": "watch -n 1 node npm_commands/otp.js",
+      "exec": "node aws/login_aws.js"
     }
 }
