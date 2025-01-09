@@ -24,16 +24,16 @@ const timeoutSec = 15000;
 
   await page.goto(`https://${account}.signin.aws.amazon.com/console`);
 
-  // ユーザー名フィールドが表示されるまで待機
+  // フィールドが全て表示されるまで待機
   await page.waitForSelector('#username', { timeout: timeoutSec });
-  await page.fill('#username', username);
-
-  // パスワードフィールドが表示されるまで待機
   await page.waitForSelector('#password', { timeout: timeoutSec });
-  await page.fill('#password', password);
-
-  // サインインボタンが表示されるまで待機
   await page.waitForSelector('#signin_button', { timeout: timeoutSec });
+
+  // memo: 上記の waitForSelector だけだと、フィールドが表示された後に入力ができる前に処理が進んでしまうため、適当な時間待機
+  await page.waitForTimeout(500);
+
+  await page.fill('#username', username);
+  await page.fill('#password', password);
   await page.click('#signin_button');
 
   await page.waitForSelector('#mfaCode', { timeout: timeoutSec });
